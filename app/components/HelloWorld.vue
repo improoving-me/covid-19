@@ -241,8 +241,8 @@
                 <FlexboxLayout justifyContent="space-between" flexDirection="column" class="home-panel contenitore" width="100%" height="100%">
                     <HtmlView :html="`Questa applicazione è un progetto open source sviluppato da Improoving.me srl allo scopo di sensibilizzare la popolazione nei confronti della diffusione del virus SARS-COV-2.`" />
                     <HtmlView :html="`Tutti i dati utilizzati sono forniti dalla Protezione Civile al link https://github.com/pcm-dpc/COVID-19`" />
-                    <HtmlView :html="`Se sei uno sviluppatore e desideri migliorare questa applicazione, trovi il file sorgente al link https://github.com/pcm-dpc/COVID-19`" />
-                    <Image src="https://improoving.me//img/logo.png"
+                    <HtmlView :html="`Se sei uno sviluppatore e desideri migliorare questa applicazione, trovi il file sorgente al link https://github.com/improoving-me/covid-19`" />
+                    <Image src="https://improoving.me/img/logo.png"
                            width="50%" margin="5px 0 20px" />
                     <HtmlView alignSelf="flex-end" alignItems="center" class="callout callout-success" :html="`<p><strong>Andrà tutto bene</strong> 🌈</p>`" width="100%" />
                 </FlexboxLayout>
