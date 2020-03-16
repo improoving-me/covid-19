@@ -13,6 +13,22 @@
                                     <HtmlView :html="`<strong>Tamponi:</strong> ${lastEntry.tamponi} (${incremento(lastEntry.tamponi, penultimateEntry.tamponi)})`" />
                                     <HtmlView class="guariti" :html="`<strong>Guariti:</strong> ${lastEntry.dimessi_guariti} (${incremento(lastEntry.dimessi_guariti, penultimateEntry.dimessi_guariti)})`" />
                                     <HtmlView class="deceduti" :html="`<strong>Deceduti:</strong> ${lastEntry.deceduti} (${incremento(lastEntry.deceduti, penultimateEntry.deceduti)})`" />
+
+                                    <RadPieChart allowAnimation="true" row="0" height="200">
+                                        <PieSeries v-tkPieSeries
+                                                   selectionMode="DataPoint"
+                                                   expandRadius="0.4"
+                                                   outerRadiusFactor="0.7"
+                                                   valueProperty="Amount"
+                                                   legendLabel="Indice"
+                                                   :items="[
+                                               { Indice: 'Ricoverati con sintomi', Amount: lastEntry.ricoverati_con_sintomi },
+                                               { Indice: 'Terapia intensiva', Amount: lastEntry.terapia_intensiva },
+                                               { Indice: 'Isolamento Domiciliare', Amount: lastEntry.isolamento_domiciliare },
+                                               ]" />
+
+                                        <RadLegendView v-tkPieLegend position="Right" title="Infetti" offsetOrigin="TopRight" width="110" enableSelection="true"></RadLegendView>
+                                    </RadPieChart>
                                 </template>
 
                                 <HtmlView :html="`<em>Aggiornamento: ${lastUpdate}</em>`" />
@@ -25,6 +41,25 @@
                         <TabViewItem title="Dettaglio">
                             <ScrollView>
                                 <StackLayout class="home-panel">
+                                    <template v-if="lastEntry !== null">
+                                        <HtmlView :html="`Infetti`" />
+                                        <RadPieChart allowAnimation="true" row="0" height="200">
+                                            <PieSeries v-tkPieSeries
+                                                       selectionMode="DataPoint"
+                                                       expandRadius="0.4"
+                                                       outerRadiusFactor="0.7"
+                                                       valueProperty="Amount"
+                                                       legendLabel="Indice"
+                                                       :items="[
+                                               { Indice: 'Ricoverati con sintomi', Amount: lastEntry.ricoverati_con_sintomi },
+                                               { Indice: 'Terapia intensiva', Amount: lastEntry.terapia_intensiva },
+                                               { Indice: 'Isolamento Domiciliare', Amount: lastEntry.isolamento_domiciliare },
+                                               ]" />
+
+                                            <RadLegendView v-tkPieLegend position="Right" offsetOrigin="TopRight" width="110" enableSelection="true"></RadLegendView>
+                                        </RadPieChart>
+                                    </template>
+
                                     <template v-for="(chart, chart_key) in charts">
                                         <HtmlView :html="chart.title" />
                                         <RadCartesianChart seriesSelectionMode="Single" :height="chart.height" style="font-size: 8;">
@@ -53,6 +88,7 @@
                         <TabViewItem title="Trend">
                             <ScrollView>
                                 <StackLayout class="home-panel">
+                                    <HtmlView class="callout callout-info" :html="`Questi grafici mostrano variazioni percentuali rispetto al giorno precedente, per cui possono avere forti oscillazioni soprattutto quando i valori sono piccoli. Se, ad esempio, i dimessi guariti sono 10 il primo giorno, 20 il secondo e 15 il terzo, avremo dei valori di 0, +100% e - 25%.`" />
                                     <template v-for="(chart, chart_key) in trendCharts">
                                         <HtmlView :html="chart.title" />
                                         <RadCartesianChart seriesSelectionMode="Single" :height="chart.height" style="font-size: 8;">
@@ -106,6 +142,25 @@
                         <TabViewItem title="Dettaglio">
                             <ScrollView>
                                 <StackLayout class="home-panel">
+                                    <template v-if="lastEntry !== null">
+                                        <HtmlView :html="`Infetti`" />
+                                        <RadPieChart allowAnimation="true" row="0" height="200">
+                                            <PieSeries v-tkPieSeries
+                                                       selectionMode="DataPoint"
+                                                       expandRadius="0.4"
+                                                       outerRadiusFactor="0.7"
+                                                       valueProperty="Amount"
+                                                       legendLabel="Indice"
+                                                       :items="[
+                                               { Indice: 'Ricoverati con sintomi', Amount: lastEntry.ricoverati_con_sintomi },
+                                               { Indice: 'Terapia intensiva', Amount: lastEntry.terapia_intensiva },
+                                               { Indice: 'Isolamento Domiciliare', Amount: lastEntry.isolamento_domiciliare },
+                                               ]" />
+
+                                            <RadLegendView v-tkPieLegend position="Right" offsetOrigin="TopRight" width="110" enableSelection="true"></RadLegendView>
+                                        </RadPieChart>
+                                    </template>
+
                                     <template v-for="(chart, chart_key) in charts">
                                         <HtmlView :html="chart.title" />
                                         <RadCartesianChart seriesSelectionMode="Single" :height="chart.height" style="font-size: 8;">
@@ -134,6 +189,7 @@
                         <TabViewItem title="Trend">
                             <ScrollView>
                                 <StackLayout class="home-panel">
+                                    <HtmlView class="callout callout-info" :html="`Questi grafici mostrano variazioni percentuali rispetto al giorno precedente, per cui possono avere forti oscillazioni soprattutto quando i valori sono piccoli. Se, ad esempio, i dimessi guariti sono 10 il primo giorno, 20 il secondo e 15 il terzo, avremo dei valori di 0, +100% e - 25%.`" />
                                     <template v-for="(chart, chart_key) in trendCharts">
                                         <HtmlView :html="chart.title" />
                                         <RadCartesianChart seriesSelectionMode="Single" :height="chart.height" style="font-size: 8;">
@@ -209,6 +265,7 @@
                         <TabViewItem title="Trend">
                             <ScrollView>
                                 <StackLayout class="home-panel">
+                                    <HtmlView class="callout callout-info" :html="`Questi grafici mostrano variazioni percentuali rispetto al giorno precedente, per cui possono avere forti oscillazioni soprattutto quando i valori sono piccoli. Se, ad esempio, i nuovi casi sono 10 il primo giorno, 20 il secondo e 15 il terzo, avremo dei valori di 0, +100% e - 25%.`" />
                                     <template v-for="(chart, chart_key) in trendChartsProvince">
                                         <HtmlView :html="chart.title" />
                                         <RadCartesianChart seriesSelectionMode="Single" :height="chart.height" style="font-size: 8;">
@@ -730,6 +787,11 @@
         font-size: 15px;
         margin: 0 -15px -5px -15px;
         padding: 15px 30px;
+    }
+
+    .callout-info{
+        border-color: #1e9ff2!important;
+        background-color: #b8e1fb;
     }
 
     .callout-success{
