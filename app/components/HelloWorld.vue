@@ -42,7 +42,7 @@
                             <ScrollView>
                                 <StackLayout class="home-panel">
                                     <template v-if="lastEntry !== null">
-                                        <HtmlView :html="`Infetti`" />
+                                        <HtmlView class="chart-title" :html="`Dove sono i malati?`" />
                                         <RadPieChart allowAnimation="true" row="0" height="200">
                                             <PieSeries v-tkPieSeries
                                                        selectionMode="DataPoint"
@@ -61,7 +61,8 @@
                                     </template>
 
                                     <template v-for="(chart, chart_key) in charts">
-                                        <HtmlView :html="chart.title" />
+                                        <HtmlView class="chart-title" :html="chart.title" />
+                                        <HtmlView v-if="typeof chart.explanation !== 'undefined'" class="callout callout-explanation" :html="chart.explanation" />
                                         <RadCartesianChart seriesSelectionMode="Single" :height="chart.height" style="font-size: 8;">
                                             <LineSeries
                                                     v-for="(serie, serie_key) in chart.serie"
@@ -74,7 +75,7 @@
                                                     :valueProperty="serie.valore"/>
                                             <DateTimeContinuousAxis v-tkCartesianHorizontalAxis
                                                                     labelFitMode="Rotate" labelRotationAngle="-45"
-                                                                    allowZoom="true" allowPan="true" />
+                                                                    allowZoom="true" allowPan="true" majorStep="1" majorStepUnit="Week" />
                                             <LinearAxis v-tkCartesianVerticalAxis allowZoom="true" allowPan="true"
                                                         :labelFormat="typeof chart.y_label !== 'undefined' ? chart.y_label : '%.0f'"
                                                         minimum="0" />
@@ -88,9 +89,10 @@
                         <TabViewItem title="Trend">
                             <ScrollView>
                                 <StackLayout class="home-panel">
-                                    <HtmlView class="callout callout-info" :html="`Questi grafici mostrano variazioni percentuali rispetto al giorno precedente, per cui possono avere forti oscillazioni soprattutto quando i valori sono piccoli. Se, ad esempio, i dimessi guariti sono 10 il primo giorno, 20 il secondo e 15 il terzo, avremo dei valori di 0, +100% e - 25%.`" />
+                                    <HtmlView class="callout callout-info" :html="`Questi grafici mostrano <strong>variazioni percentuali</strong> rispetto al giorno precedente, per cui possono avere forti oscillazioni soprattutto quando i valori sono piccoli. Se, ad esempio, i dimessi guariti sono 10 il primo giorno, 20 il secondo e 15 il terzo, avremo dei valori di 0, +100% e - 25%.`" />
                                     <template v-for="(chart, chart_key) in trendCharts">
-                                        <HtmlView :html="chart.title" />
+                                        <HtmlView class="chart-title" :html="chart.title" />
+                                        <HtmlView v-if="typeof chart.explanation !== 'undefined'" class="callout callout-explanation" :html="chart.explanation" />
                                         <RadCartesianChart seriesSelectionMode="Single" :height="chart.height" style="font-size: 8;">
                                             <LineSeries
                                                     v-for="(serie, serie_key) in chart.serie"
@@ -103,7 +105,7 @@
                                                     :valueProperty="serie.valore"/>
                                             <DateTimeContinuousAxis v-tkCartesianHorizontalAxis
                                                                     labelFitMode="Rotate" labelRotationAngle="-45"
-                                                                    allowZoom="true" allowPan="true" />
+                                                                    allowZoom="true" allowPan="true" majorStep="1" majorStepUnit="Week" />
                                             <LinearAxis v-tkCartesianVerticalAxis allowZoom="true" allowPan="true"
                                                         :labelFormat="typeof chart.y_label !== 'undefined' ? chart.y_label : '%.0f'"
                                                         maximum="100" minimum="-100" />
@@ -143,7 +145,7 @@
                             <ScrollView>
                                 <StackLayout class="home-panel">
                                     <template v-if="lastEntry !== null">
-                                        <HtmlView :html="`Infetti`" />
+                                        <HtmlView class="chart-title" :html="`Dove sono i malati?`" />
                                         <RadPieChart allowAnimation="true" row="0" height="200">
                                             <PieSeries v-tkPieSeries
                                                        selectionMode="DataPoint"
@@ -162,7 +164,8 @@
                                     </template>
 
                                     <template v-for="(chart, chart_key) in charts">
-                                        <HtmlView :html="chart.title" />
+                                        <HtmlView class="chart-title" :html="chart.title" />
+                                        <HtmlView v-if="typeof chart.explanation !== 'undefined'" class="callout callout-explanation" :html="chart.explanation" />
                                         <RadCartesianChart seriesSelectionMode="Single" :height="chart.height" style="font-size: 8;">
                                             <LineSeries
                                                     v-for="(serie, serie_key) in chart.serie"
@@ -175,7 +178,7 @@
                                                     :valueProperty="serie.valore"/>
                                             <DateTimeContinuousAxis v-tkCartesianHorizontalAxis
                                                                     labelFitMode="Rotate" labelRotationAngle="-45"
-                                                                    allowZoom="true" allowPan="true" />
+                                                                    allowZoom="true" allowPan="true" majorStep="1" majorStepUnit="Week" />
                                             <LinearAxis v-tkCartesianVerticalAxis allowZoom="true" allowPan="true"
                                                         :labelFormat="typeof chart.y_label !== 'undefined' ? chart.y_label : '%.0f'"
                                                         minimum="0" />
@@ -189,9 +192,10 @@
                         <TabViewItem title="Trend">
                             <ScrollView>
                                 <StackLayout class="home-panel">
-                                    <HtmlView class="callout callout-info" :html="`Questi grafici mostrano variazioni percentuali rispetto al giorno precedente, per cui possono avere forti oscillazioni soprattutto quando i valori sono piccoli. Se, ad esempio, i dimessi guariti sono 10 il primo giorno, 20 il secondo e 15 il terzo, avremo dei valori di 0, +100% e - 25%.`" />
+                                    <HtmlView class="callout callout-info" :html="`Questi grafici mostrano <strong>variazioni percentuali</strong> rispetto al giorno precedente, per cui possono avere forti oscillazioni soprattutto quando i valori sono piccoli. Se, ad esempio, i dimessi guariti sono 10 il primo giorno, 20 il secondo e 15 il terzo, avremo dei valori di 0, +100% e - 25%.`" />
                                     <template v-for="(chart, chart_key) in trendCharts">
-                                        <HtmlView :html="chart.title" />
+                                        <HtmlView class="chart-title" :html="chart.title" />
+                                        <HtmlView v-if="typeof chart.explanation !== 'undefined'" class="callout callout-explanation" :html="chart.explanation" />
                                         <RadCartesianChart seriesSelectionMode="Single" :height="chart.height" style="font-size: 8;">
                                             <LineSeries
                                                     v-for="(serie, serie_key) in chart.serie"
@@ -204,7 +208,7 @@
                                                     :valueProperty="serie.valore"/>
                                             <DateTimeContinuousAxis v-tkCartesianHorizontalAxis
                                                                     labelFitMode="Rotate" labelRotationAngle="-45"
-                                                                    allowZoom="true" allowPan="true" />
+                                                                    allowZoom="true" allowPan="true" majorStep="1" majorStepUnit="Week" />
                                             <LinearAxis v-tkCartesianVerticalAxis allowZoom="true" allowPan="true"
                                                         :labelFormat="typeof chart.y_label !== 'undefined' ? chart.y_label : '%.0f'"
                                                         maximum="100" minimum="-100" />
@@ -238,7 +242,8 @@
                             <ScrollView>
                                 <StackLayout class="home-panel">
                                     <template v-for="(chart, chart_key) in chartsProvince">
-                                        <HtmlView :html="chart.title" />
+                                        <HtmlView class="chart-title" :html="chart.title" />
+                                        <HtmlView v-if="typeof chart.explanation !== 'undefined'" class="callout callout-explanation" :html="chart.explanation" />
                                         <RadCartesianChart seriesSelectionMode="Single" :height="chart.height" style="font-size: 8;">
                                             <LineSeries
                                                     v-for="(serie, serie_key) in chart.serie"
@@ -251,7 +256,7 @@
                                                     :valueProperty="serie.valore"/>
                                             <DateTimeContinuousAxis v-tkCartesianHorizontalAxis
                                                                     labelFitMode="Rotate" labelRotationAngle="-45"
-                                                                    allowZoom="true" allowPan="true" />
+                                                                    allowZoom="true" allowPan="true" majorStep="1" majorStepUnit="Week" />
                                             <LinearAxis v-tkCartesianVerticalAxis allowZoom="true" allowPan="true"
                                                         :labelFormat="typeof chart.y_label !== 'undefined' ? chart.y_label : '%.0f'"
                                                         minimum="0" />
@@ -265,9 +270,10 @@
                         <TabViewItem title="Trend">
                             <ScrollView>
                                 <StackLayout class="home-panel">
-                                    <HtmlView class="callout callout-info" :html="`Questi grafici mostrano variazioni percentuali rispetto al giorno precedente, per cui possono avere forti oscillazioni soprattutto quando i valori sono piccoli. Se, ad esempio, i nuovi casi sono 10 il primo giorno, 20 il secondo e 15 il terzo, avremo dei valori di 0, +100% e - 25%.`" />
+                                    <HtmlView class="callout callout-info" :html="`Questi grafici mostrano <strong>variazioni percentuali</strong> rispetto al giorno precedente, per cui possono avere forti oscillazioni soprattutto quando i valori sono piccoli. Se, ad esempio, i nuovi casi sono 10 il primo giorno, 20 il secondo e 15 il terzo, avremo dei valori di 0, +100% e - 25%.`" />
                                     <template v-for="(chart, chart_key) in trendChartsProvince">
-                                        <HtmlView :html="chart.title" />
+                                        <HtmlView class="chart-title" :html="chart.title" />
+                                        <HtmlView v-if="typeof chart.explanation !== 'undefined'" class="callout callout-explanation" :html="chart.explanation" />
                                         <RadCartesianChart seriesSelectionMode="Single" :height="chart.height" style="font-size: 8;">
                                             <LineSeries
                                                     v-for="(serie, serie_key) in chart.serie"
@@ -280,7 +286,7 @@
                                                     :valueProperty="serie.valore"/>
                                             <DateTimeContinuousAxis v-tkCartesianHorizontalAxis
                                                                     labelFitMode="Rotate" labelRotationAngle="-45"
-                                                                    allowZoom="true" allowPan="true" />
+                                                                    allowZoom="true" allowPan="true" majorStep="1" majorStepUnit="Week" />
                                             <LinearAxis v-tkCartesianVerticalAxis allowZoom="true" allowPan="true"
                                                         :labelFormat="typeof chart.y_label !== 'undefined' ? chart.y_label : '%.0f'"
                                                         maximum="100" minimum="-100" />
@@ -323,30 +329,15 @@
     			default(){
     				return [
                         {
-                        	title: 'Totale Casi',
+                        	title: 'Quanti sono stati colpiti dal virus?',
 	                        height: 300,
+                            explanation: 'Da questo grafico possiamo vedere come evolve il numero di positivi e degli ospedalizzati nel tempo. Questo grafico è cumulativo, ciò significa che rappresenta il totale delle persone testate positive per il COVID-19.',
                             serie: [
                             	{
-                            		title: 'Totale Casi',
-                                    name: 'Totale Casi',
+                            		title: 'Totale infetti',
+                                    name: 'Totale infetti',
 		                            valore: 'totale_casi'
                                 },
-	                            {
-		                            title: 'Tamponi effettuati',
-		                            name: 'Tamponi effettuati',
-		                            valore: 'tamponi',
-	                            },
-                            ]
-                        },
-                        {
-                        	title: 'Nuovi Positivi',
-	                        height: 300,
-                            serie: [
-	                            {
-		                            title: 'Nuovi Positivi',
-		                            name: 'Nuovi Positivi',
-		                            valore: 'nuovi_attualmente_positivi',
-	                            },
 	                            {
 		                            title: 'Totale Ospedalizzati',
 		                            name: 'Totale Ospedalizzati',
@@ -355,8 +346,38 @@
                             ]
                         },
 					    {
-						    title: 'Ricoveri',
+						    title: 'A che velocità si diffonde il virus?',
 						    height: 300,
+						    explanation: 'Questo grafico mostra quante persone, giornalmente, risultano positive al COVID-19. lo scopo di questa guerra, il motivo per cui ci chiedono di restare a casa, è quello di combattere per abbassare questo valore al minimo.',
+						    serie: [
+							    {
+								    title: 'Nuovi Positivi',
+								    name: 'Nuovi Positivi',
+								    valore: 'nuovi_attualmente_positivi',
+							    },
+						    ]
+					    },
+					    {
+						    title: 'La gente guarisce?',
+						    height: 300,
+						    explanation: 'In questa tabella possiamo vedere l`andamento dei dimessi guariti e dei deceduti. Questo grafico è cumulativo.',
+						    serie: [
+							    {
+								    title: 'Guariti',
+								    name: 'Guariti',
+								    valore: 'dimessi_guariti',
+							    },
+							    {
+								    title: 'Deceduti',
+								    name: 'Deceduti',
+								    valore: 'deceduti',
+							    },
+						    ]
+					    },
+					    {
+						    title: 'Come vengono curati i malati?',
+						    height: 300,
+						    explanation: 'In base alla severità della malattia i malati vengono messi in isolamento domestico, ricoverati in ospedale o, nei casi peggiori, ricoverati in terapia intensiva. Da questo grafico possiamo vedere come il nostro Sistema Sanitario sta distribuendo i malati nel tempo.',
 						    serie: [
 							    {
 								    title: 'Ricoverati con sintomi',
@@ -376,21 +397,17 @@
 						    ]
 					    },
 					    {
-                        	title: 'Dimessi',
-	                        height: 300,
-                            serie: [
-	                            {
-		                            title: 'Guariti',
-		                            name: 'Guariti',
-		                            valore: 'dimessi_guariti',
-	                            },
-	                            {
-		                            title: 'Deceduti',
-		                            name: 'Deceduti',
-		                            valore: 'deceduti',
-	                            },
-                            ]
-                        }
+						    title: 'Quanti test stiamo facendo?',
+						    height: 300,
+						    explanation: 'Questo grafico mostra il totale dei tamponi effettuati dall`inizio dell`emergenza. Questo grafico è cumulativo.',
+						    serie: [
+							    {
+								    title: 'Tamponi effettuati',
+								    name: 'Tamponi effettuati',
+								    valore: 'tamponi',
+							    }
+						    ]
+					    },
                     ];
                 }
             },
@@ -398,19 +415,15 @@
     			default(){
     				return [
                         {
-                        	title: 'Incremento % dei casi',
+                        	title: 'A che velocità si diffonde il contagio?',
 	                        height: 300,
                             y_label: '%.0f pp',
+                            explanation: 'Da questo grafico possiamo capire se il contagio sta rallentando; il valore ottimale è sotto lo 0, a significare che i contagiati giornalieri sono minori del giorno precedente.',
                             serie: [
 	                            {
-		                            title: 'Totale casi',
-		                            name: 'Totale casi',
+		                            title: 'Totale infetti',
+		                            name: 'Totale infetti',
 		                            valore: 'incremento_totale_casi',
-	                            },
-	                            {
-		                            title: 'Tamponi effettuati',
-		                            name: 'Tamponi effettuati',
-		                            valore: 'incremento_tamponi',
 	                            },
 	                            {
 		                            title: 'Nuovi positivi',
@@ -420,9 +433,10 @@
                             ]
                         },
                         {
-                        	title: 'Incremento % dei ricoveri',
+                        	title: 'A che velocità crescono i malati?',
 	                        height: 300,
                             y_label: '%.0f pp',
+                            explanation: 'Da questo grafico possiamo capire la velocità con la quale i nostri ospedali si stanno riempendo. Anche per questo grafico i valori ottimali sono sotto lo 0.',
                             serie: [
 	                            {
 		                            title: 'Ricoverati con sintomi',
@@ -442,9 +456,10 @@
                             ]
                         },
                         {
-                        	title: 'Incremento % dei dimessi',
+                        	title: 'Come procedono le cure?',
 	                        height: 300,
                             y_label: '%.0f pp',
+                            explanation: 'Questo grafico, idealmente, dovrebbe mostrare due trend di segno opposto: i deceduti in calo ed i guariti in crescita, a significare che la nostra efficacia nel gestire l`emergenza sta migliorando. Questo grafico è fortemente soggetto a oscillazioni.',
                             serie: [
 	                            {
 		                            title: 'Guariti',
@@ -458,6 +473,19 @@
 	                            }
                             ]
                         },
+                        {
+                        	title: 'A che velocità crescono i tamponi?',
+	                        height: 300,
+                            y_label: '%.0f pp',
+                            explanation: 'Questo grafico mostra la velocità con la quale cresce il numero di tamponi effettuati giornalmente.',
+                            serie: [
+	                            {
+		                            title: 'Tamponi effettuati',
+		                            name: 'Tamponi effettuati',
+		                            valore: 'incremento_tamponi',
+	                            }
+                            ]
+                        },
                     ];
                 }
             },
@@ -465,14 +493,27 @@
                 default(){
 		            return [
 			            {
-				            title: 'Totale Casi',
+				            title: 'Quanti sono stati colpiti dal virus?',
 				            height: 300,
+				            explanation: 'Da questo grafico possiamo vedere come evolve il numero di positivi e degli ospedalizzati nel tempo. Questo grafico è cumulativo, ciò significa che rappresenta il totale delle persone testate positive per il COVID-19.',
 				            serie: [
 					            {
-						            title: 'Totale Casi',
-						            name: 'Totale Casi',
+						            title: 'Totale Infetti',
+						            name: 'Totale Infetti',
 						            valore: 'totale_casi'
 					            }
+				            ],
+			            },
+			            {
+				            title: 'A che velocità si diffonde il virus?',
+				            height: 300,
+				            explanation: 'Questo grafico mostra quante persone, giornalmente, risultano positive al COVID-19. lo scopo di questa guerra, il motivo per cui ci chiedono di restare a casa, è quello di combattere per abbassare questo valore al minimo.',
+				            serie: [
+					            {
+						            title: 'Nuovi Positivi',
+						            name: 'Nuovi Positivi',
+						            valore: 'nuovi_attualmente_positivi',
+					            },
 				            ]
 			            },
 		            ];
@@ -482,13 +523,14 @@
                 default(){
 		            return [
 			            {
-				            title: 'Incremento % dei casi',
+				            title: 'A che velocità si diffonde il contagio?',
 				            height: 300,
 				            y_label: '%.0f pp',
+				            explanation: 'Da questo grafico possiamo capire se il contagio sta rallentando; il valore ottimale è sotto lo 0, a significare che i contagiati giornalieri sono minori del giorno precedente.',
 				            serie: [
 					            {
-						            title: 'Totale casi',
-						            name: 'Totale casi',
+						            title: 'Totale infetti',
+						            name: 'Totale infetti',
 						            valore: 'incremento_totale_casi',
 					            }
 				            ]
@@ -552,6 +594,11 @@
 				            el[new_parametro] = typeof previousDateEntry !== 'undefined' ?
 					            _this.variazionePercentuale(el[parametro], previousDateEntry[parametro]) : 0;
 			            });
+
+			            if(consider === 'parametriProvince')
+				            el.nuovi_attualmente_positivi = typeof previousDateEntry !== 'undefined' ?
+                                (el.totale_casi - previousDateEntry.totale_casi) : el.totale_casi;
+
 			            return el;
 		            }) : [];
             },
@@ -806,6 +853,11 @@
 
     .callout strong{
         font-size: 25px !important;
+    }
+
+    .chart-title{
+        margin-top: 50px;
+        font-weight: bold;
     }
 
     LinearAxis {
