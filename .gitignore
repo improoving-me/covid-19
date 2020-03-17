@@ -2,6 +2,8 @@
 /platforms
 /hooks
 /.idea
+/.cloud
+/.migration_backup
 npm-debug.log
 composer.phar
 .phpstorm.meta.php

@@ -1,6 +1,6 @@
 <template>
     <Page>
-        <ActionBar title="COVID-19 Andamento italiano" class="action-bar" />
+        <ActionBar title="#AndràTuttoBene" class="action-bar" />
 
         <TabView height="100%" androidTabsPosition="top" :selectedIndex="0" @selectedIndexChange="indexChange">
             <TabViewItem title="Nazionale">
@@ -33,7 +33,7 @@
 
                                 <HtmlView :html="`<em>Aggiornamento: ${lastUpdate}</em>`" />
 
-                                <HtmlView alignSelf="flex-end" class="callout callout-success" v-if="piccoSuperato" :html="`<strong>Forse abbiamo superato il picco!</strong> Questo non significa che è tutto finito, ma finalmente i nostri sforzi stanno iniziando a dare i loro risultati... grazie!`" />
+                                <HtmlView alignSelf="flex-end" class="callout callout-success" v-if="piccoSuperato" :html="`<strong>Forse abbiamo superato il picco!</strong> Questo non significa che è tutto finito, ma finalmente i nostri sforzi stanno iniziando a dare i loro risultati... continuiamo così!`" />
                                 <HtmlView alignSelf="flex-end" class="callout callout-danger" v-else :html="`<strong>Picco non ancora superato.</strong> Dobbiamo impegnarci per migliorare la situazione, fai anche tu la tua parte tenendoti informato e limitando i contatti. Per non sentirti solo, condividi la tua esperienza usando l'hashtag <em>#IORESTOACASA</em>`" />
                             </FlexboxLayout >
                         </TabViewItem>
@@ -135,7 +135,7 @@
 
                                     <HtmlView :html="`<em>Aggiornamento: ${lastUpdate}</em>`" />
 
-                                    <HtmlView alignSelf="flex-end" class="callout callout-success" v-if="piccoSuperato" :html="`<strong>Forse abbiamo superato il picco!</strong> Questo non significa che è tutto finito, ma finalmente i nostri sforzi stanno iniziando a dare i loro risultati... grazie!`" />
+                                    <HtmlView alignSelf="flex-end" class="callout callout-success" v-if="piccoSuperato" :html="`<strong>Forse abbiamo superato il picco!</strong> Questo non significa che è tutto finito, ma finalmente i nostri sforzi stanno iniziando a dare i loro risultati... continuiamo così!`" />
                                     <HtmlView alignSelf="flex-end" class="callout callout-danger" v-else :html="`<strong>Picco non ancora superato.</strong> Dobbiamo impegnarci per migliorare la situazione, fai anche tu la tua parte tenendoti informato e limitando i contatti. Per non sentirti solo, condividi la tua esperienza usando l'hashtag <em>#IORESTOACASA</em>`" />
                                 </template>
                             </FlexboxLayout >
@@ -626,7 +626,7 @@
                     })[1].entries : [];
             },
 	        piccoSuperato(){
-        		return this.lastEntry !== null && this.entriesSorted.length > 3 && Moment(new Date()).isAfter('2020-03-20') ?
+        		return this.lastEntry !== null && this.entriesSorted.length > 3 && Moment(new Date()).isAfter('2020-03-18') ?
                     (this.lastEntry.nuovi_attualmente_positivi < this.penultimateEntry.nuovi_attualmente_positivi
                             && this.penultimateEntry.nuovi_attualmente_positivi < this.entriesSorted[this.entriesSorted.length - 3].nuovi_attualmente_positivi
                     ) : false
@@ -791,11 +791,6 @@
         margin: 15;
     }
 
-    .description-label {
-        margin-bottom: 15;
-        text-transform: rotate(45deg);
-    }
-
     .contenitore {
         padding: 5px 15px;
         text-align: center;
@@ -858,18 +853,6 @@
     .chart-title{
         margin-top: 50px;
         font-weight: bold;
-    }
-
-    LinearAxis {
-        label-text-color: black;
-        line-hidden: false;
-        line-color: black;
-    }
-
-    CategoricalAxis {
-        label-text-color: black;
-        line-hidden: false;
-        line-color: black;
     }
 
     .text-center{
